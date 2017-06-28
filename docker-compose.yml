@@ -1,0 +1,25 @@
+version: '2.1'
+
+services:
+  rest-service:
+    image: rogerioavelino/app-rest-service-docker
+    container_name: restService
+    ports:
+      - "8181:8181"
+    links:
+      - mongodb
+  mongodb:
+    image: docker.io/mongo:3.4
+    command: mongod --smallfiles
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+  rest-web-client:
+    image: rogerioavelino/app-rest-client-docker
+    container_name: restWebClient
+    ports:
+      - "8383:80"
+    links:
+      - rest-service

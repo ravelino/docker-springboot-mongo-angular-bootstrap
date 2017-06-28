@@ -1,0 +1,3 @@
+FROM nginx:1.13
+COPY ./app-rest-client-docker /usr/share/nginx/html
+EXPOSE 80
