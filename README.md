@@ -1,18 +1,35 @@
-# docker-springboot-mongo-angular-bootstrap
+## docker-springboot-mongo-angular-bootstrap
 
-# Como subir o projeto
-
-# Com o docker rodando execute o comando no terminal
-
-# Baixar um container com MongoDB e
-## docker run -it -p 27017:27017 --name mongodb mongo:3.4 /usr/bin/mongod --smallfiles && cd app-domain/ && mvn clean install && cd .. && docker stop $(docker ps -qa) && docker rm mongodb && docker build -f restClientDockerfile -t rogerioavelino/app-rest-client-docker . && cd app-rest-service-docker/ && mvn clean package docker:build && cd .. && docker-compose up -d
-## espere até baixar o container e a mensagem "waiting for connections on port 27017" do mongo aparecer, então aperte ctrl + p + q para sair do console do mongo e iniciar 
-## o build do projeto app-domain
-
-## ele ira baixar um container com o mongoDB e subir na porta 27017
+Projeto para aprendizagem utilizando as seguintes tecnologias:
+* Docker
+* Springboot
+* Restful
+* MongoDB
+* AngularJs
+* Bootstrap
 
 
-# va ate a pasta raiz do projeto(onde se encontra o arquivo restClientDockerfile) e execute o comando:
-# docker build -f restClientDockerfile -t rogerioavelino/app-rest-client-docker .
+### Como subir o projeto, requisitos:
+* JDK 1.8
+* Maven 3
+* Docker e Docker-compose
 
-# cd app-rest-service-docker/ && mvn clean package docker:build && cd ..
+> Obs: O projeto foi buildado com GNU/Linux Fedora 25, então todos os passos descritos a seguir são referentes ao mesmo!
+
+#### Execute o comando no terminal para iniciar o docker:
+
+```sh 
+$ systemctl start docker
+```
+
+#### Logo depois de iniciar o docker, execute o comando no terminal para subir a aplicação
+
+```sh
+$ docker run -it -p 27017:27017 --name mongodb mongo:3.4 /usr/bin/mongod --smallfiles && cd app-domain/ && mvn clean install && cd .. && docker stop $(docker ps -qa) && docker rm mongodb && docker build -f restClientDockerfile -t rogerioavelino/app-rest-client-docker . && cd app-rest-service-docker/ && mvn clean package docker:build && cd .. && docker-compose up -d
+```
+
+Espere baixar e subir container do mongoDB até a mensagem "waiting for connections on port 27017" do mongo aparecer, então aperte:
+``` ctrl + p + q ```
+para sair do console do mongo e continuar a subir a aplicação.
+
+##### Logo quando terminar, acesse a aplicação pelo link -> [http://localhost:8383/index.html]
